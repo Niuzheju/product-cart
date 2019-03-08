@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript">
+        function addCart() {
+            var count = $("#count").val();
+            var title = $("#title").text();
+            var price = $("#price").text().substring(1);
+            var cart = {
+                "count": count,
+                "title": title,
+                "price": price,
+                "productId": 1
+            };
+            alert(JSON.stringify(cart));
+            $.post("http://localhost:8080/product/addCart", cart, function (data) {
+                if (data === "200"){
+                    alert("添加成功!");
+                }
+
+            }, "text");
+
+
+
+
+
+        }
+    </script>
+</head>
+<body>
+<div>
+    <img src="img/002.jpg" alt="">
+    <p><span id="title">头像</span></p>
+    <p><span style="color: red" id="price">$200</span></p>
+</div>
+<input type="number" id="count"/>
+<button type="button" onclick="addCart()">添加</button>
+
+</body>
+</html>
